@@ -1,4 +1,4 @@
-
+import math
 #Chapter 1
 
 
@@ -105,3 +105,29 @@ def sum_from_middle(a, n):
 #1.10
 
 
+#Linear recursion fibonnaci sequence
+
+
+def linear_fib(n):
+    if n ==2 or n==1:
+        return 1
+    return math.floor(1.618*linear_fib(n-1) + 1/2)
+
+def multiple_fib(n):
+    if n == 1 or n ==2:
+        return 1
+    elif n > 2 and n % 2 == 0:
+        return math.pow(multiple_fib(n/2+1), 2) - math.pow(multiple_fib(n/2 - 1), 2)
+    else:
+        return math.pow(multiple_fib((n+1)/2), 2) + math.pow(multiple_fib((n-1)/2), 2)
+
+
+def nested_fib(n , s):
+    if n == 1 or n == 2:
+        return 1 + s
+    else:
+        return nested_fib(n-1, s+nested_fib(n-2, 0))
+
+print(linear_fib(7))
+print(multiple_fib(7))
+print(nested_fib(7, 0))
