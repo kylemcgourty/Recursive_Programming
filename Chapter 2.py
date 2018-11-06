@@ -39,3 +39,71 @@ def addFirst_N_Numbers_via_Division(n):
             return 3*addFirst_N_Numbers_via_Division((n-1)/2) + addFirst_N_Numbers_via_Division((n+1)/2)
 
 
+
+
+#2.4.
+
+answer = "The base case exists when there is an input of length 1. A recursive diagram:" \
+         """
+         d0d1d2d3                    d0d1d2d3
+         
+         remove most sig digit         + d0
+         
+         d1d2d3                        d1d2d3
+         """
+
+
+def digitPrinter(number):
+
+    if number < 10:
+        print(number)
+        return
+
+    digit = number // (10 ** (len(str(number))-1)) % 10
+    print(digit)
+
+    remaining = number % (10 ** (len(str(number))-1))
+
+    digitPrinter(remaining)
+
+
+# digitPrinter(1986)
+
+
+#2.5
+
+answer = "A divide and conquer approach to finding the largest digit"
+
+
+""" 
+    Array of size n                                         S(array)
+    
+                                                                
+    
+    
+    array[:len(array)/2]   when n = 1, compare to largest    S(array[:len(array)/2]
+
+
+"""
+
+#2.6
+
+class calcLargest:
+    def __init__(self):
+        self.largest  = 0;
+
+
+    def findLargest(self, collection):
+
+        if len(collection) == 0:
+            return self.largest
+
+        if collection[0] > self.largest:
+            self.largest = collection[0]
+
+        self.findLargest(collection[1:])
+
+        return self.largest;
+
+
+
