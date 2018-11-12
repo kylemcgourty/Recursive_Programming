@@ -98,17 +98,17 @@ class efficientSlowProduct():
             return n * m
 
         elif n % 2 ==0 and m % 2 == 0:
-            self.producttracker = self.less_slow_multiply(n/2, m/2)
-            return self.producttracker
+            return self.less_slow_multiply(n/2, m/2)
+
         elif n % 2 is not 0 and m % 2 is not 0:
-            self.producttracker = (self.less_slow_multiply(n/2, m/2))*4
-            return self.producttracker
+            return (self.less_slow_multiply(n/2, m/2))*4
+
         elif n % 2 is not 0:
-            self.producttracker = (self.less_slow_multiply(n/2, m/2))*4
-            return self.producttracker
+            return (self.less_slow_multiply(n/2, m/2))*4
+
         elif m % 2 is not 0:
-            self.producttracker = (self.less_slow_multiply(n/2, m/2))*4
-            return self.producttracker
+            return (self.less_slow_multiply(n/2, m/2))*4
+
 
 sp = efficientSlowProduct()
 
