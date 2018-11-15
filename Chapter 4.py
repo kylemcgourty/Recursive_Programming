@@ -98,7 +98,7 @@ class efficientSlowProduct():
             return n * m
 
         elif n % 2 ==0 and m % 2 == 0:
-            return self.less_slow_multiply(n/2, m/2)
+            return self.less_slow_multiply(n/2, m/2)*4
 
         elif n % 2 is not 0 and m % 2 is not 0:
             return (self.less_slow_multiply(n/2, m/2))*4
@@ -112,4 +112,75 @@ class efficientSlowProduct():
 
 sp = efficientSlowProduct()
 
-print(sp.less_slow_multiply(15, 4))
+# print(sp.less_slow_multiply(15, 4))
+
+
+#4.6
+
+class callbackSum:
+    def __init__(self, m, n, cb):
+
+        self.m = m
+        self.n = n
+        self.cb = cb
+
+        print(self.compute_sum(cb))
+
+    def compute_sum(self, cb):
+
+        if self.m == self.n:
+            return 0
+        else:
+            self.m +=1
+            return cb(self.m) + self.compute_sum(cb)
+
+def timesTwo(a):
+    return a*2
+
+# callbackSum(0,5, timesTwo)
+
+
+#4.7
+
+class digitCounter:
+    def __init__(self, number):
+
+        self.number = number
+        self.count = 0
+
+    def countDigit(self):
+
+        if self.number == 0:
+            return self.count
+        else:
+            self.number = self.number // 10
+            self.count +=1
+            return self.countDigit()
+
+# counter = digitCounter(126634)
+#
+# print(counter.countDigit())
+
+#4.8
+
+
+class binaryToDecimal:
+    def __init__(self, binary):
+
+        self.binary = binary
+        self.decimal = 0
+        self.placeCounter = 1
+
+    def convertToDecimal(self):
+
+        if self.binary == 0:
+            return self.decimal
+        digit = self.binary % 10
+        self.decimal += digit * self.placeCounter
+        self.placeCounter *= 2
+        self.binary = self.binary // 10
+        return self.convertToDecimal()
+
+dec = binaryToDecimal(1010)
+
+# print(dec.convertToDecimal())
