@@ -184,3 +184,162 @@ class binaryToDecimal:
 dec = binaryToDecimal(1010)
 
 # print(dec.convertToDecimal())
+
+
+
+#4.9
+
+"""recursive_case = 10 * recursive_call(n//b, b) + (n%b)"""
+
+
+#4.10
+
+
+class LeastSignificatBit:
+    def __init__(self):
+        self.count = 1
+
+
+    def determineBitPosition(self, binary):
+
+        bit = binary % 10
+
+        if bit == 1:
+            return self.count
+        else:
+            self.count +=1
+            return self.determineBitPosition(binary/10)
+
+
+position = LeastSignificatBit()
+
+# print(position.determineBitPosition(1001000))
+
+#4.12
+
+
+class VowelsInString:
+    def __init__(self):
+        self.count = 0
+
+    def vowelCounter(self, key):
+
+        if len(key) == 0:
+            return self.count
+
+        character = key[0:1]
+
+        if character in ["a", "e", "i", "o", "u", "y"]:
+            self.count += 1
+
+        return self.vowelCounter(key[1:])
+
+
+vowels = VowelsInString()
+
+# print(vowels.vowelCounter("hippopotamus"))
+
+
+#4.13
+
+class BinomialCoefficient:
+    def nChooseR(self, n, r, v):
+
+            return (n * self.factorial(n-1))/(r * self.factorial(r-1)*v*self.factorial(v-1))
+
+    def factorial(self, n):
+        if n == 1:
+            return 1
+        else:
+            return n * self.factorial(n-1)
+
+
+
+binomial = BinomialCoefficient()
+# print(binomial.nChooseR(5, 3, 5-3))
+
+
+#4.14
+
+
+class Pascal:
+    def __init__(self):
+        self.next_row = list()
+
+    def determineNextRow(self, a):
+
+        if len(a) == 1:
+            self.next_row.append(1)
+            self.next_row.insert(0,1)
+            return self.next_row
+
+        self.next_row.append(a[0]+a[1])
+
+        return self.determineNextRow(a[1:])
+
+pascal_triangle = Pascal()
+
+# print(pascal_triangle.determineNextRow([1,4,6,4,1]))
+
+
+#4.15
+
+class CorrectInsert:
+    def __init__(self, original_number):
+        self.original_number = str(original_number)
+        self.position = 1
+
+    def placeInsert(self, examined_number, digit):
+
+        number_as_string = str(examined_number)
+        first_digit = number_as_string[0:1]
+        second_digit = number_as_string[1:2]
+
+        if int(first_digit) < digit < int(second_digit):
+               return int(self.original_number[:self.position] + str(digit) + self.original_number[self.position:])
+        else:
+            self.position += 1
+            cleaved_number = number_as_string[1:]
+            return self.placeInsert(int(cleaved_number), digit)
+
+digit_insert = CorrectInsert(112445799)
+
+# print(digit_insert.placeInsert(112445799, 6))
+
+
+#4.17
+
+
+class InsertionSort:
+
+    def __init__(self, a):
+        self.a = a
+
+    def sort(self, index):
+
+        if index == len(self.a):
+            return self.a
+        if index > 0:
+            digit = self.a.pop(index)
+            if index == len(self.a)-1:
+                self.insertionLoop(index-1, digit)
+            else:
+                self.insertionLoop(index, digit)
+
+        return self.sort(index + 1)
+
+    def insertionLoop(self, index, digit):
+        for i in range(index):
+            if self.a[i] < digit <= self.a[i+1]:
+                self.a.insert(i+1, digit)
+                break
+            if digit > self.a[index-1]:
+                self.a.insert(index, digit)
+                break
+            if digit <= self.a[0]:
+                self.a.insert(0, digit)
+                break
+
+insert_sort = InsertionSort([4,2,1,6,8,3,2,1])
+
+print(insert_sort.sort(0))
